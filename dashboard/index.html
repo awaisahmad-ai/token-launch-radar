@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Launch Radar</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="../data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="frame mast-inner">
+      <a href="index.html" class="brand"><span class="mark" aria-hidden="true">↗</span> Launch Radar</a>
+      <span class="snapshot">DefiLlama snapshot <time id="snapshotDate"></time></span>
+    </div>
+  </header>
+
+  <main class="frame">
+    <section class="hero" aria-labelledby="title">
+      <div>
+        <p class="eyebrow">DEFI RESEARCH</p>
+        <h1 id="title">Token launch watchlist</h1>
+        <p>Compare implied circulating values and see what to verify before farming a protocol.</p>
+      </div>
+      <dl id="summary" class="summary"></dl>
+    </section>
+
+    <nav class="tabs" aria-label="Research views">
+      <button type="button" data-tab="radar" aria-pressed="true">Launch radar</button>
+      <button type="button" data-tab="market" aria-pressed="false">Recorded tokens</button>
+      <button type="button" data-tab="method" aria-pressed="false">Methodology</button>
+    </nav>
+
+    <section id="board" aria-labelledby="boardTitle">
+      <div class="section-heading">
+        <div>
+          <h2 id="boardTitle">Ranked protocols</h2>
+          <p id="boardNote">No token recorded in the snapshot. Values are model scenarios in USD.</p>
+        </div>
+        <button type="button" class="outline" id="reset">Clear filters</button>
+      </div>
+      <div class="filters">
+        <label class="search">Search protocols<input id="search" type="search" placeholder="Search by name"></label>
+        <label><span id="categoryLabel">Category</span><select id="category" aria-labelledby="categoryLabel"><option value="">All categories</option></select></label>
+        <label><span id="chainLabel">Chain</span><select id="chain" aria-labelledby="chainLabel"><option value="">All chains</option></select></label>
+        <label><span id="universeLabel">Universe</span><select id="universe" aria-labelledby="universeLabel">
+          <option value="">All candidates</option>
+          <option value="watch">Watchlist only</option>
+          <option value="early">Beyond watchlist</option>
+        </select></label>
+        <label><span id="sortLabel">Sort by</span><select id="sort" aria-labelledby="sortLabel">
+          <option value="value">Implied value</option>
+          <option value="tvl">Total value locked</option>
+          <option value="growth">7-day TVL change</option>
+          <option value="name">Protocol name</option>
+        </select></label>
+      </div>
+      <p class="results" id="count" aria-live="polite"></p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr id="columns"></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="pager">
+        <button type="button" class="outline" id="prev">Previous</button>
+        <span id="pageNumber"></span>
+        <button type="button" class="outline" id="next">Next</button>
+      </div>
+    </section>
+
+    <section id="detail" aria-labelledby="protocolTitle" hidden>
+      <div class="section-heading detail-head">
+        <div>
+          <p class="eyebrow" id="protocolType"></p>
+          <h2 id="protocolTitle" tabindex="-1"></h2>
+          <p id="protocolContext"></p>
+        </div>
+        <button type="button" class="outline" id="back">← Back to radar</button>
+      </div>
+      <div class="detail-grid">
+        <div>
+          <article class="panel dark">
+            <h3>Implied circulating value</h3>
+            <p class="value" id="heroValue"></p>
+            <div id="range"></div>
+          </article>
+          <article class="panel drivers">
+            <h3>What drives the estimate</h3>
+            <dl id="drivers"></dl>
+            <p class="small" id="flags"></p>
+          </article>
+        </div>
+        <article class="panel checklist">
+          <h3>Farming checks</h3>
+          <p>Start with official campaign rules. Budget estimates cover research unless an on-chain action is quoted.</p>
+          <ol id="plan"></ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="method" aria-labelledby="methodTitle" hidden>
+      <div class="section-heading">
+        <div><h2 id="methodTitle">Valuation methodology</h2><p>Model assumptions and source coverage</p></div>
+      </div>
+      <article class="panel method-panel">
+        <h3>How the radar ranks protocols</h3>
+        <ol id="methodology"></ol>
+        <h3>How to read token status</h3>
+        <p>The watchlist comes from the sealed snapshot. Other candidates lack a token identifier, symbol and positive market cap in that snapshot. Known wrapper and bridge categories are screened out of the additional candidates. The recorded-token view uses reported market values and includes tokens with unavailable market cap.</p>
+      </article>
+    </section>
+
+    <footer id="source"></footer>
+  </main>
+</body>
+</html>
